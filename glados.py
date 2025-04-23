@@ -1,4 +1,4 @@
-import requests,json,os
+import requests,json,os,pytz
 from datetime import datetime
 
 SIGNIN_URL = "https://glados.rocks/api/user/checkin"
@@ -53,7 +53,7 @@ def check_in():
             print(f" 0000000 --------------------> {timestamp }")
 
             if timestamp:
-                reward_time = datetime.fromtimestamp(timestamp / 1000)
+                reward_time = datetime.fromtimestamp(timestamp.timezone("Asia/Shanghai")/ 1000)
                 reward_time_str = reward_time.strftime("%Y-%m-%d %H:%M:%S")
 
             print(f" 签到时间：{reward_time_str}")
