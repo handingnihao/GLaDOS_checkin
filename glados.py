@@ -15,7 +15,7 @@ else:
 
 
 HEADERS = {
-    'cookie': COOKIE,
+    'cookie': cookies,
     'user-agent': 'Mozilla/5.0',
     'referer': 'https://glados.rocks/console/checkin',
     'origin': 'https://glados.rocks',
