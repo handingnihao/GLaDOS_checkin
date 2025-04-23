@@ -5,7 +5,14 @@ SIGNIN_URL = "https://glados.rocks/api/user/checkin"
 STATUS_URL = "https://glados.rocks/api/user/status"
 
 # 替换为你的 Cookie（不要加 cookie:）
-COOKIE = 'koa:sess=eyJ1c2VySWQiOjYwMjIxMywiX2V4cGlyZSI6MTc3MTI0NTA4OTk3NywiX21heEFnZSI6MjU5MjAwMDAwMDB9; koa:sess.sig=vg5s646Xxvltkv1mSLpYULpyuFs'
+cookies = os.environ.get("GLADOS_COOKIE", []).split("&")
+if cookies[0] == "":
+        print('未获取到COOKIE变量') 
+        cookies = []
+        exit(0)
+else:
+ cookies = cookies[0]
+
 
 HEADERS = {
     'cookie': COOKIE,
@@ -33,7 +40,7 @@ def check_in():
             email = data.get("email", "未知")
             left_days = data.get("leftDays", "未知")
 
-        # ��� 签到奖励明细处理（包含时间戳）
+        # ��� 签到奖励明细处理（包含时间戳）
         reward_time_str = "未知时间"
         if 'list' in res_json and len(res_json['list']) > 0:
             latest_reward = res_json['list'][0]
@@ -43,6 +50,8 @@ def check_in():
 
             # 转换时间戳（毫秒转秒）
             timestamp = latest_reward.get('time')
+          print('0------------------------------>  ',timestamp )
+
             if timestamp:
                 reward_time = datetime.fromtimestamp(timestamp / 1000)
                 reward_time_str = reward_time.strftime("%Y-%m-%d %H:%M:%S")
@@ -54,7 +63,7 @@ def check_in():
         else:
             print(" 今日已签到（无奖励记录）")
 
-        # ��� 输出账户信息
+        # ��� 输出账户信息
         print(" 账户信息：")
         print(f"  - 邮箱：{email}")
         print(f"  - 当前总积分：{balance}")
