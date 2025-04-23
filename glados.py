@@ -5,7 +5,7 @@ SIGNIN_URL = "https://glados.rocks/api/user/checkin"
 STATUS_URL = "https://glados.rocks/api/user/status"
 
 # 替换为你的 Cookie（不要加 cookie:）
-COOKIE = os.environ.get("GLADOS_COOKIE", []).split("&"et
+COOKIE = os.environ.get("GLADOS_COOKIE", []).split("&")
 
 HEADERS = {
     'cookie': COOKIE,
