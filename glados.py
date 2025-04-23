@@ -51,9 +51,9 @@ def check_in():
             # 转换时间戳（毫秒转秒）
             timestamp = latest_reward.get('time')
             print(f" 0000000 --------------------> {timestamp }")
-
+            tz = pytz.timezone("Asia/Shanghai")
             if timestamp:
-                reward_time = datetime.fromtimestamp(timestamp.timezone("Asia/Shanghai")/ 1000)
+                reward_time = datetime.fromtimestamp(timestamp/ 1000, tz)
                 reward_time_str = reward_time.strftime("%Y-%m-%d %H:%M:%S")
 
             print(f" 签到时间：{reward_time_str}")
