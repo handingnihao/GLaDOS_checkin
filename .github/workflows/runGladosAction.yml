@@ -22,6 +22,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install requests
+          pip install pytz
       - name: Run checkin
         run: |
           python3 glados.py
