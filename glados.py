@@ -50,7 +50,7 @@ def check_in():
 
             # 转换时间戳（毫秒转秒）
             timestamp = latest_reward.get('time')
-          print('0------------------------------>  ',timestamp )
+          print(f'0------------------------------> {timestamp }')
 
             if timestamp:
                 reward_time = datetime.fromtimestamp(timestamp / 1000)
